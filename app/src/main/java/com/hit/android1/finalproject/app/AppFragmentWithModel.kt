@@ -4,8 +4,8 @@ import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
-import com.hit.android1.finalproject.Extensions.getOrCreate
-import com.hit.android1.finalproject.Extensions.logDebug
+import com.hit.android1.finalproject.app.Extensions.getOrCreate
+import com.hit.android1.finalproject.app.Extensions.logDebug
 
 abstract class AppFragmentWithModel<T: ViewBinding, S: ViewModel>(private val vm: Class<S>) : AppFragment<T>() {
     companion object {

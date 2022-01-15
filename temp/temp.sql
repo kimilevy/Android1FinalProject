@@ -1,0 +1,4 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE `inventoryItem` (`id` TEXT NOT NULL, `unlocked` INTEGER NOT NULL, PRIMARY KEY(`id`));
+COMMIT;

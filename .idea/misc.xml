@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Studies/Andriod1/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.21302083333333333" />
         <entry key="..\:/Studies/Andriod1/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3671875" />
         <entry key="..\:/Studies/Andriod1/app/src/main/res/drawable/inventory_item_air.xml" value="0.34629629629629627" />
         <entry key="..\:/Studies/Andriod1/app/src/main/res/drawable/inventory_item_alchemist.xml" value="0.34629629629629627" />
@@ -82,6 +83,7 @@
         <entry key="..\:/Studies/Andriod1/app/src/main/res/drawable/inventory_item_fortune_cookie.xml" value="0.2916666666666667" />
         <entry key="..\:/Studies/Andriod1/app/src/main/res/drawable/inventory_item_fossil.xml" value="0.13240740740740742" />
         <entry key="..\:/Studies/Andriod1/app/src/main/res/drawable/inventory_item_fountain.xml" value="0.13240740740740742" />
+        <entry key="..\:/Studies/Andriod1/app/src/main/res/drawable/inventory_item_frankenstein_s_monster.xml" value="0.24444444444444444" />
         <entry key="..\:/Studies/Andriod1/app/src/main/res/drawable/inventory_item_frog.xml" value="0.2324074074074074" />
         <entry key="..\:/Studies/Andriod1/app/src/main/res/drawable/inventory_item_fruit_tree.xml" value="0.2324074074074074" />
         <entry key="..\:/Studies/Andriod1/app/src/main/res/drawable/inventory_item_garden.xml" value="0.13240740740740742" />
@@ -151,6 +153,7 @@
         <entry key="..\:/Studies/Andriod1/app/src/main/res/drawable/inventory_item_mercury.xml" value="0.13240740740740742" />
         <entry key="..\:/Studies/Andriod1/app/src/main/res/drawable/inventory_item_metal.xml" value="0.13240740740740742" />
         <entry key="..\:/Studies/Andriod1/app/src/main/res/drawable/inventory_item_meteor.xml" value="0.13240740740740742" />
+        <entry key="..\:/Studies/Andriod1/app/src/main/res/drawable/inventory_item_meteoroid.xml" value="0.25833333333333336" />
         <entry key="..\:/Studies/Andriod1/app/src/main/res/drawable/inventory_item_mist.xml" value="0.13240740740740742" />
         <entry key="..\:/Studies/Andriod1/app/src/main/res/drawable/inventory_item_moon.xml" value="0.13240740740740742" />
         <entry key="..\:/Studies/Andriod1/app/src/main/res/drawable/inventory_item_mousetrap.xml" value="0.2916666666666667" />
@@ -182,9 +185,20 @@
         <entry key="..\:/Studies/Andriod1/app/src/main/res/drawable/inventory_item_rust.xml" value="0.13240740740740742" />
         <entry key="..\:/Studies/Andriod1/app/src/main/res/drawable/inventory_item_sack.xml" value="0.2916666666666667" />
         <entry key="..\:/Studies/Andriod1/app/src/main/res/drawable/inventory_item_saturn.xml" value="0.13240740740740742" />
+        <entry key="..\:/Studies/Andriod1/app/src/main/res/drawable/inventory_item_science.xml" value="0.19479166666666667" />
+        <entry key="..\:/Studies/Andriod1/app/src/main/res/drawable/inventory_item_smog.xml" value="0.24444444444444444" />
+        <entry key="..\:/Studies/Andriod1/app/src/main/res/drawable/inventory_item_solar_system.xml" value="0.128125" />
+        <entry key="..\:/Studies/Andriod1/app/src/main/res/drawable/inventory_item_trojan_horse.xml" value="0.1" />
+        <entry key="..\:/Studies/Andriod1/app/src/main/res/drawable/inventory_item_vine.xml" value="0.22135416666666666" />
+        <entry key="..\:/Studies/Andriod1/app/src/main/res/drawable/inventory_item_web.xml" value="0.1" />
+        <entry key="..\:/Studies/Andriod1/app/src/main/res/drawable/inventory_item_wheel.xml" value="0.24444444444444444" />
+        <entry key="..\:/Studies/Andriod1/app/src/main/res/layout/custom_view.xml" value="0.2" />
         <entry key="..\:/Studies/Andriod1/app/src/main/res/layout/fragment_second.xml" value="0.36666666666666664" />
-        <entry key="..\:/Studies/Andriod1/app/src/main/res/layout/main_activity.xml" value="0.36666666666666664" />
-        <entry key="..\:/Studies/Andriod1/app/src/main/res/layout/main_fragment.xml" value="0.17291666666666666" />
+        <entry key="..\:/Studies/Andriod1/app/src/main/res/layout/inventory_item.xml" value="0.28854166666666664" />
+        <entry key="..\:/Studies/Andriod1/app/src/main/res/layout/main_activity.xml" value="0.16" />
+        <entry key="..\:/Studies/Andriod1/app/src/main/res/layout/main_fragment.xml" value="0.5" />
+        <entry key="..\:/Studies/Andriod1/app/src/main/res/layout/sample_inventory_item.xml" value="0.28854166666666664" />
+        <entry key="..\:/Studies/Andriod1/app/src/main/res/layout/sample_item.xml" value="0.22" />
       </map>
     </option>
   </component>

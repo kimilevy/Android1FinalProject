@@ -1,5 +1,6 @@
-package com.hit.android1.finalproject
+package com.hit.android1.finalproject.app
 
+import android.app.Activity
 import android.text.Editable
 import android.util.Log
 import android.view.Gravity
@@ -8,16 +9,28 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
+import java.util.*
 
 
 object Extensions {
-    fun View.logDebug(v: String) = Log.d("Debug", v)
-    fun View.logException(e: Exception) = Log.e("Error", e.toString())
-    fun View.logException(v: String) = Log.e("Error", v)
 
-    fun Fragment.logDebug(v: String) = Log.d("Debug", v)
+    fun Activity.logDebug(v: Any?) = Log.d("Debug", v.toString())
+    fun Activity.logException(e: Exception) = Log.e("Error", e.toString())
+    fun Activity.logException(v: String) = Log.e("Error", v.toString())
+
+    fun View.logDebug(v: Any?) = Log.d("Debug", v.toString())
+    fun View.logException(e: Exception) = Log.e("Error", e.toString())
+    fun View.logException(v: String) = Log.e("Error", v.toString())
+
+    fun Fragment.logDebug(v: Any?) = Log.d("Debug", v.toString())
     fun Fragment.logException(e: Exception) = Log.e("Error", e.toString())
     fun Fragment.logException(e: String) = Log.e("Error", e)
+
+    fun String.capitalize() = this.replaceFirstChar {
+        if (it.isLowerCase()) it.titlecase(
+            Locale.getDefault()
+        ) else it.toString()
+    }
 
     fun <K, V> MutableMap<K, V>.getOrCreate(key: K, create: () -> V): V {
         if (!this.containsKey(key))

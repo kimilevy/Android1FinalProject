@@ -2,11 +2,9 @@ package com.hit.android1.finalproject.ui.second
 
 import android.view.View
 import androidx.navigation.fragment.findNavController
-import com.hit.android1.finalproject.Extensions.logDebug
 import com.hit.android1.finalproject.R
 import com.hit.android1.finalproject.app.AppFragmentWithModel
 import com.hit.android1.finalproject.databinding.FragmentSecondBinding
-import com.hit.android1.finalproject.ui.main.MainViewModel
 
 
 class SecondFragment : AppFragmentWithModel<FragmentSecondBinding, SecondViewModel>(SecondViewModel::class.java) {
