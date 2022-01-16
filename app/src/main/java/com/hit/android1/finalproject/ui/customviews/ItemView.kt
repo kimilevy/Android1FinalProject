@@ -13,15 +13,10 @@ import android.graphics.Point
 import android.os.Build
 
 import android.view.View
+import com.hit.android1.finalproject.app.Extensions.logDebug
 import com.hit.android1.finalproject.dao.entities.InventoryItem
 import com.hit.android1.finalproject.dao.entities.InventoryItem.Companion.drawableResourceId
 import com.hit.android1.finalproject.dao.entities.InventoryItem.Companion.name
-import android.R.attr.onClick
-
-import android.view.MotionEvent
-
-
-
 
 
 class ItemView @JvmOverloads constructor(
@@ -29,11 +24,15 @@ class ItemView @JvmOverloads constructor(
         attrs: AttributeSet? = null,
         defStyle: Int = 0
     ) : CustomView<CustomViewItemBinding>(context, attrs, defStyle) {
+    constructor(context: Context?, item: InventoryItem) : this(context) {
+        this.item = item
+    }
+
     var draggable: Boolean = true
     var attachedToDrag: Boolean = false
     var longPressTimeout: Long = 500
 
-    override fun inflate(): CustomViewItemBinding = CustomViewItemBinding.inflate(LayoutInflater.from(context), this, true)
+    override fun inflate() = CustomViewItemBinding.inflate(LayoutInflater.from(context), this, true)
     var title: String = "Item Title"
     set(t: String) {
         binding.itemTitle.text = t
@@ -54,11 +53,6 @@ class ItemView @JvmOverloads constructor(
             field = i
             attachOnDrag()
         }
-    }
-
-    override fun performClick(): Boolean {
-        super.performClick()
-        return true
     }
 
     override fun initView(context: Context, attrs: AttributeSet?, defStyle: Int?) {
@@ -87,32 +81,30 @@ class ItemView @JvmOverloads constructor(
         item?.let {
             if (!draggable || attachedToDrag) return
             binding.customViewItemLayout.setOnLongClickListener { view: View ->
-                val item = ClipData.Item(it.id)
+                item?.let {
+                    val dataToDrag = ClipData(
+                        it.id,
+                        arrayOf(ClipDescription.MIMETYPE_TEXT_PLAIN),
+                        ClipData.Item(it.id)
+                    )
 
-                val dataToDrag = ClipData(it.id, arrayOf(ClipDescription.MIMETYPE_TEXT_PLAIN), item)
+                    val itemShadow = DragShadow(view)
 
-                val maskShadow = DragShadow(view)
-
-                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-                    //support pre-Nougat versions
-                    @Suppress("DEPRECATION")
-                    view.startDrag(dataToDrag, maskShadow, view, 0)
-                } else {
-                    //supports Nougat and beyond
-                    view.startDragAndDrop(dataToDrag, maskShadow, view, 0)
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+                        //support pre-Nougat versions
+                        @Suppress("DEPRECATION")
+                        view.startDrag(dataToDrag, itemShadow, view, 0)
+                    } else {
+                        //supports Nougat and beyond
+                        view.startDragAndDrop(dataToDrag, itemShadow, view, 0)
+                    }
                 }
-
-                view.visibility = View.INVISIBLE
 
                 true
             }
             attachedToDrag = true
         }
     }
-
-
-
-
 
     private class DragShadow(var itemView: View) : DragShadowBuilder(itemView) {
         override fun onDrawShadow(canvas: Canvas?) {

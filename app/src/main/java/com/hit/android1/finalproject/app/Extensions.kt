@@ -63,11 +63,8 @@ object Extensions {
 //        snackbar.view.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.error_snackbar))
 //        snackbar.show()
     }
-    fun Fragment.openSnackbar(text: Int) {
-        Snackbar.make(requireView(), text, Snackbar.LENGTH_SHORT).show()
-    }
-    fun Fragment.openSnackbar(text: String) {
-        Snackbar.make(requireView(), text, Snackbar.LENGTH_SHORT).show()
+    fun View.openSnackbar(text: Any) {
+        Snackbar.make(this, text.toString(), Snackbar.LENGTH_SHORT).show()
     }
     fun Fragment.openTopSnackbar(text: String) {
         val snackbar = Snackbar.make(requireView(), text, Snackbar.LENGTH_SHORT)

@@ -21,7 +21,7 @@
         android:background="@color/gray_600"
         android:baselineAligned="false" />
 
-    <LinearLayout
+    <com.hit.android1.finalproject.ui.customviews.AlchemyPlaygroundView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="81" />

@@ -21,7 +21,7 @@ class MainFragment : AppFragmentWithModel<MainFragmentBinding, MainViewModel>(Ma
     private suspend fun initializeRecycler() {
         withContext(Dispatchers.Main) {
             binding.itemInventoryRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2, RecyclerView.HORIZONTAL, false)
-            binding.itemInventoryRecyclerView.adapter = InventoryAdapter(viewModel.unlockedItems!!)
+            binding.itemInventoryRecyclerView.adapter = InventoryAdapter(viewModel.items!!)
         }
     }
 
@@ -29,9 +29,7 @@ class MainFragment : AppFragmentWithModel<MainFragmentBinding, MainViewModel>(Ma
         GlobalScope.launch(Dispatchers.IO) {
             viewModel.items = dao.getItems()
             viewModel.unlockedItems = dao.getUnlockedItems()
-            for (item in viewModel.unlockedItems!!) {
-                initializeRecycler()
-            }
+            initializeRecycler()
         }
     }
 }
