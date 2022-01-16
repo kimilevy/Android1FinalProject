@@ -26,11 +26,11 @@ class ItemView @JvmOverloads constructor(
         attrs: AttributeSet? = null,
         defStyle: Int = 0
     ) : CustomView<CustomViewItemBinding>(context, attrs, defStyle) {
-    constructor(context: Context?, item: InventoryItem, isDraggable: Boolean = false) : this(context) {
-        this.draggable = isDraggable
+    constructor(context: Context?, item: InventoryItem, isDragAndDrop: Boolean = false) : this(context) {
+        this.isDragAndDrop = isDragAndDrop
         this.item = item
     }
-    var draggable: Boolean = true
+    var isDragAndDrop: Boolean = true
     var attachedToDrag: Boolean = false
 
     override fun inflate() = CustomViewItemBinding.inflate(LayoutInflater.from(context), this, true)
@@ -84,10 +84,10 @@ class ItemView @JvmOverloads constructor(
 
     private fun attachOnDrag() {
         item?.let {
-            if (!draggable || attachedToDrag) return
+            if (!isDragAndDrop || attachedToDrag) return
             binding.customViewItemLayout.setOnLongClickListener { view: View ->
                 item?.let {
-                    val data = Json.encodeToString(DropItemEventData(it, draggable))
+                    val data = Json.encodeToString(DropItemEventData(it, isDragAndDrop))
 
                     val dataToDrag = ClipData(
                         data,

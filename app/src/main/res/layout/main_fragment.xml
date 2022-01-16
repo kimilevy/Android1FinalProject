@@ -9,22 +9,42 @@
     android:orientation="vertical"
     tools:context=".ui.main.MainFragment">
 
-    <LinearLayout
+    <!--Placeholder-->
+    <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="18" />
 
+    <!--!Divider!-->
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight=".5"
         android:background="@color/gray_600"
         android:baselineAligned="false" />
+    <!--!Divider!-->
 
-    <com.hit.android1.finalproject.ui.customviews.AlchemyPlaygroundView
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="81" />
+        android:layout_weight="81">
+
+        <com.hit.android1.finalproject.ui.customviews.AlchemyPlaygroundView
+            android:id="@+id/alchemy_playground"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/clear_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="16dp"
+            app:srcCompat="@drawable/ic_sweep"
+            android:contentDescription="@string/clear_btn_text" />
+
+    </FrameLayout>
 
     <View
         android:layout_width="match_parent"

@@ -11,7 +11,7 @@ class InventoryAdapter(var inventory: List<InventoryItem>) : RecyclerView.Adapte
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InventoryViewHolder {
         val view = ItemView(parent.context)
-        view.draggable = true
+        view.isDragAndDrop = true
         view.layoutParams = ViewGroup.LayoutParams(
             ViewGroup.LayoutParams.WRAP_CONTENT,
             ViewGroup.LayoutParams.WRAP_CONTENT

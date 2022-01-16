@@ -12,6 +12,33 @@
     <color name="gray_400">#FFBDBDBD</color>
     <color name="gray_600">#FF757575</color>
 
+    <color name="primary_color">#D0BCFF</color>
+    <color name="on_primary">#380095</color>
+    <color name="primary_variant">#5100CF</color>
+    <color name="on_primary_variant">#E9DDFF</color>
+
+
+    <color name="secondary">#33E36A</color>
+    <color name="on_secondary">#003911</color>
+    <color name="secondary_variant">#00531C</color>
+    <color name="on_secondary_variant">#67FF8C</color>
+
+
+    <color name="teritary">#FBBC1A</color>
+    <color name="on_teritary">#412D00</color>
+    <color name="teritary_variant">#5D4200</color>
+    <color name="on_teritary_variant">#FFDE9C</color>
+
+
+    <color name="error">#FFB4A9</color>
+    <color name="on_error">#680003</color>
+    <color name="error_variant">#930006</color>
+    <color name="on_error_variant">#FFDAD4</color>
+
+
+
+
+
     <color name="game_background">#251C09</color>
     <color name="inventory_background">#3C1010</color>
 </resources>

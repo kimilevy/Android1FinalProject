@@ -22,7 +22,11 @@ interface IDao {
 
     @Transaction
     @Query("SELECT result FROM recipe WHERE (first_ingredient=:itemA AND second_ingredient=:itemB) OR (first_ingredient=:itemB AND second_ingredient=:itemA)")
-    suspend fun getResult(itemA: String, itemB: String): String
+    suspend fun getResult(itemA: String, itemB: String): String?
+
+    @Transaction
+    @Query("SELECT * FROM recipe WHERE first_ingredient=:itemA OR second_ingredient=:itemA")
+    suspend fun getRecipesThatCanBeMade(itemA: String): List<Recipe>
 
     /***********     Item      ************/
 

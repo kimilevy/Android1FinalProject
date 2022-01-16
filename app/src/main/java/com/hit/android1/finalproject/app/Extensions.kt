@@ -66,6 +66,9 @@ object Extensions {
     fun View.openSnackbar(text: Any) {
         Snackbar.make(this, text.toString(), Snackbar.LENGTH_SHORT).show()
     }
+    fun Fragment.openSnackbar(text: Any) {
+        Snackbar.make(requireView(), text.toString(), Snackbar.LENGTH_SHORT).show()
+    }
     fun Fragment.openTopSnackbar(text: String) {
         val snackbar = Snackbar.make(requireView(), text, Snackbar.LENGTH_SHORT)
         val layoutParams = snackbar.view.layoutParams as CoordinatorLayout.LayoutParams
