@@ -11,4 +11,7 @@
     <color name="light_blue_600">#FF039BE5</color>
     <color name="gray_400">#FFBDBDBD</color>
     <color name="gray_600">#FF757575</color>
+
+    <color name="game_background">#251C09</color>
+    <color name="inventory_background">#3C1010</color>
 </resources>

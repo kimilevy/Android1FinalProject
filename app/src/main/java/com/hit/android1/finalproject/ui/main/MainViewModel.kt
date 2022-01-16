@@ -6,6 +6,7 @@ import kotlin.random.Random
 
 class MainViewModel : ViewModel() {
     var items: List<InventoryItem>? = null
+    var unlockedItems: List<InventoryItem>? = null
     fun getRandomItem() = items?.let {it[Random.nextInt(0, it.size - 1)]}
 
     // TODO: Implement the ViewModel

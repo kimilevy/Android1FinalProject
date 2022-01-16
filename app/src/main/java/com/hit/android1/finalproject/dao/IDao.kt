@@ -32,6 +32,9 @@ interface IDao {
     @Query("SELECT * FROM inventoryItem")
     suspend fun getItems(): List<InventoryItem>
 
+    @Query("SELECT * FROM inventoryItem WHERE unlocked = 1")
+    suspend fun getUnlockedItems(): List<InventoryItem>
+
     @Query("SELECT unlocked FROM inventoryItem WHERE id IN (:itemIds)")
     suspend fun isUnlocked(itemIds: List<String>): List<Boolean>
 
@@ -41,7 +44,7 @@ interface IDao {
     @Query("SELECT * FROM inventoryItem WHERE id=:itemId")
     suspend fun getItem(itemId: String): InventoryItem
 
-    @Query("UPDATE inventoryItem SET unlocked=1 WHERE id==:itemId")
+    @Query("UPDATE inventoryItem SET unlocked=1 WHERE id=:itemId")
     suspend fun unlockItem(itemId: String): Int
 
     @Transaction

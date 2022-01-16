@@ -193,10 +193,12 @@
         <entry key="..\:/Studies/Andriod1/app/src/main/res/drawable/inventory_item_web.xml" value="0.1" />
         <entry key="..\:/Studies/Andriod1/app/src/main/res/drawable/inventory_item_wheel.xml" value="0.24444444444444444" />
         <entry key="..\:/Studies/Andriod1/app/src/main/res/layout/custom_view.xml" value="0.2" />
+        <entry key="..\:/Studies/Andriod1/app/src/main/res/layout/custom_view_item.xml" value="0.3338541666666667" />
         <entry key="..\:/Studies/Andriod1/app/src/main/res/layout/fragment_second.xml" value="0.36666666666666664" />
         <entry key="..\:/Studies/Andriod1/app/src/main/res/layout/inventory_item.xml" value="0.28854166666666664" />
+        <entry key="..\:/Studies/Andriod1/app/src/main/res/layout/item_view.xml" value="0.75" />
         <entry key="..\:/Studies/Andriod1/app/src/main/res/layout/main_activity.xml" value="0.16" />
-        <entry key="..\:/Studies/Andriod1/app/src/main/res/layout/main_fragment.xml" value="0.5" />
+        <entry key="..\:/Studies/Andriod1/app/src/main/res/layout/main_fragment.xml" value="0.22" />
         <entry key="..\:/Studies/Andriod1/app/src/main/res/layout/sample_inventory_item.xml" value="0.28854166666666664" />
         <entry key="..\:/Studies/Andriod1/app/src/main/res/layout/sample_item.xml" value="0.22" />
       </map>
