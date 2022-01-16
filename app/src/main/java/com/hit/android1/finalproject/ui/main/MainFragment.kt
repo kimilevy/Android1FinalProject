@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hit.android1.finalproject.app.AppFragmentWithModel
 import com.hit.android1.finalproject.app.Globals.dao
 import com.hit.android1.finalproject.databinding.MainFragmentBinding
+import com.hit.android1.finalproject.ui.adapters.InventoryAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

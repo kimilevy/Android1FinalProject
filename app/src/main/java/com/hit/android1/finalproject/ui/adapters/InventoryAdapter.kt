@@ -1,4 +1,4 @@
-package com.hit.android1.finalproject.ui.main
+package com.hit.android1.finalproject.ui.adapters
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
