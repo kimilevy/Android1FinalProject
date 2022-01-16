@@ -8,7 +8,9 @@ import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.hit.android1.finalproject.app.Extensions.capitalize
+import kotlinx.serialization.Serializable
 
+@Serializable
 @Entity(tableName="inventoryItem")
 data class InventoryItem @JvmOverloads constructor(
     @PrimaryKey(autoGenerate = false)

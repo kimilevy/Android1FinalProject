@@ -50,27 +50,5 @@
         android:layout_weight="15"
         android:background="@color/gray_600"
         android:orientation="horizontal">
-
-        <!--        <com.hit.android1.finalproject.ui.customviews.ItemView-->
-        <!--            android:id="@+id/item_view"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toTopOf="parent"-->
-        <!--            app:src="@drawable/inventory_item_science"-->
-        <!--            app:title="boop boop" />-->
-
-        <!--        <com.hit.android1.finalproject.ui.customviews.ItemView-->
-        <!--            android:id="@+id/item_view_2"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toTopOf="parent"-->
-        <!--            app:src="@drawable/inventory_item_air"-->
-        <!--            app:title="boop boop" />-->
     </LinearLayout>
 </LinearLayout>

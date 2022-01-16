@@ -13,10 +13,12 @@ import android.graphics.Point
 import android.os.Build
 
 import android.view.View
-import com.hit.android1.finalproject.app.Extensions.logDebug
 import com.hit.android1.finalproject.dao.entities.InventoryItem
 import com.hit.android1.finalproject.dao.entities.InventoryItem.Companion.drawableResourceId
 import com.hit.android1.finalproject.dao.entities.InventoryItem.Companion.name
+import com.hit.android1.finalproject.models.DropItemEventData
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 
 class ItemView @JvmOverloads constructor(
@@ -24,13 +26,12 @@ class ItemView @JvmOverloads constructor(
         attrs: AttributeSet? = null,
         defStyle: Int = 0
     ) : CustomView<CustomViewItemBinding>(context, attrs, defStyle) {
-    constructor(context: Context?, item: InventoryItem) : this(context) {
+    constructor(context: Context?, item: InventoryItem, isDraggable: Boolean = false) : this(context) {
+        this.draggable = isDraggable
         this.item = item
     }
-
     var draggable: Boolean = true
     var attachedToDrag: Boolean = false
-    var longPressTimeout: Long = 500
 
     override fun inflate() = CustomViewItemBinding.inflate(LayoutInflater.from(context), this, true)
     var title: String = "Item Title"
@@ -59,6 +60,10 @@ class ItemView @JvmOverloads constructor(
         setAttributes(attrs, context)
     }
 
+    override fun performClick(): Boolean {
+        return super.performClick()
+    }
+
     private fun setAttributes(attrs: AttributeSet?, context: Context) {
         attrs?.let {
             context.theme.obtainStyledAttributes(
@@ -82,10 +87,12 @@ class ItemView @JvmOverloads constructor(
             if (!draggable || attachedToDrag) return
             binding.customViewItemLayout.setOnLongClickListener { view: View ->
                 item?.let {
+                    val data = Json.encodeToString(DropItemEventData(it, draggable))
+
                     val dataToDrag = ClipData(
-                        it.id,
+                        data,
                         arrayOf(ClipDescription.MIMETYPE_TEXT_PLAIN),
-                        ClipData.Item(it.id)
+                        ClipData.Item(data)
                     )
 
                     val itemShadow = DragShadow(view)
