@@ -11,7 +11,7 @@ class WelcomeFragment : AppFragment<WelcomeFragmentBinding>() {
 
     override fun runOnCreateView(view: View) {
         binding.playButtonGame.setOnClickListener {
-            findNavController().navigate(R.id.mainFragment)
+            findNavController().navigate(R.id.action_welcomeFragment_to_mainFragment)
         }
 
     }

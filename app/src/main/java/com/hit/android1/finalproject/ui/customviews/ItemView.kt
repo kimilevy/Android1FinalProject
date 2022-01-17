@@ -46,11 +46,24 @@ class ItemView @JvmOverloads constructor(
         field = s
     }
 
+    var unlocked: Boolean = false
+        set(unlocked) {
+            if (unlocked) {
+                binding.lockImg.visibility = GONE
+                binding.itemImage.visibility = VISIBLE
+            } else {
+                binding.lockImg.visibility = VISIBLE
+                binding.itemImage.visibility = GONE
+            }
+            field = unlocked
+        }
+
     var item: InventoryItem? = null
     set(i: InventoryItem?) {
         i?.let {
             title = i.name()
             src = i.drawableResourceId(context)
+            unlocked = i.unlocked
             field = i
             attachOnDrag()
         }

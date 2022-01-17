@@ -5,9 +5,23 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hit.android1.finalproject.dao.entities.InventoryItem
 import com.hit.android1.finalproject.ui.customviews.ItemView
 
-class InventoryAdapter(var inventory: List<InventoryItem>) : RecyclerView.Adapter<InventoryAdapter.InventoryViewHolder>() {
-
+class InventoryAdapter : RecyclerView.Adapter<InventoryAdapter.InventoryViewHolder>() {
     class InventoryViewHolder(var view: ItemView) : RecyclerView.ViewHolder(view)
+
+    var inventory: MutableList<InventoryItem> = mutableListOf()
+        set(value) {
+            field=value
+            notifyItemRangeInserted(0, value.size)
+        }
+
+    fun unlockItem(item: InventoryItem) {
+        if (inventory.contains(item)) return
+        inventory.add(item)
+        inventory.sortBy { it.id }
+
+        notifyItemInserted(inventory.indexOf(item))
+    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InventoryViewHolder {
         val view = ItemView(parent.context)

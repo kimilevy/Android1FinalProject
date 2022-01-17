@@ -30,8 +30,8 @@ class AlchemyPlaygroundView @JvmOverloads constructor(
         private const val MERGE_ANIMATION_DURATION = 300L
         private const val ITEM_WIDTH_X_OFFSET = .8f
         private const val ITEM_WIDTH_Y_OFFSET = 1.6f
-        private const val MAX_GRAVITY_X_DIFF = 1.4 // in regards to width
-        private const val MAX_GRAVITY_Y_DIFF = 1.2 // in regards to height
+        private const val MAX_GRAVITY_X_DIFF = 1.2 // in regards to width
+        private const val MAX_GRAVITY_Y_DIFF = 1 // in regards to height
     }
 
     override fun inflate() = CustomViewAlchemyPlaygroundBinding.inflate(LayoutInflater.from(context), this, true)
@@ -160,8 +160,8 @@ class AlchemyPlaygroundView @JvmOverloads constructor(
                 val xDiff = abs(item.x - curr.x)
                 val yDiff = abs(item.y - curr.y)
                 curr != item &&
-                        xDiff < (itemViewWidth!! * 1.7) &&
-                        yDiff < (itemViewHeight!! * 1.5)
+                        xDiff < (itemViewWidth!! * MAX_GRAVITY_X_DIFF) &&
+                        yDiff < (itemViewHeight!! * MAX_GRAVITY_Y_DIFF)
             }
 
             if (intersecting.isEmpty()) return@launch

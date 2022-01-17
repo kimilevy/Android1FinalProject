@@ -10,20 +10,37 @@
         android:label="main_fragment"
         tools:layout="@layout/main_fragment" >
         <action
-            android:id="@+id/action_mainFragment_to_secondFragment"
-            app:destination="@id/secondFragment" />
+            android:id="@+id/action_mainFragment_to_elementsFragment"
+            app:destination="@id/ElementsFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in_reversed"
+            app:popExitAnim="@anim/slide_out" />
     </fragment>
     <fragment
-        android:id="@+id/secondFragment"
-        android:name="com.hit.android1.finalproject.ui.second.SecondFragment"
+        android:id="@+id/ElementsFragment"
+        android:name="com.hit.android1.finalproject.ui.elements.ElementsFragment"
         android:label="fragment_second"
-        tools:layout="@layout/fragment_second" />
+        tools:layout="@layout/elements_fragment" >
+        <action
+            android:id="@+id/action_ElementsFragment_to_mainFragment"
+            app:popUpTo="@id/welcomeFragment"
+            app:destination="@id/mainFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in_reversed"
+            app:popExitAnim="@anim/slide_out"/>
+    </fragment>
     <fragment
         android:id="@+id/welcomeFragment"
         android:name="com.hit.android1.finalproject.ui.welcome.WelcomeFragment"
         android:label="WelcomeFragment" >
         <action
             android:id="@+id/action_welcomeFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/mainFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in_reversed"
+            app:popExitAnim="@anim/slide_out"/>
     </fragment>
 </navigation>

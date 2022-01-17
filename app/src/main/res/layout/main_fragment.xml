@@ -9,11 +9,32 @@
     android:orientation="vertical"
     tools:context=".ui.main.MainFragment">
 
-    <!--Placeholder-->
-    <View
+    <!--Top Bar-->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="18" />
+        android:gravity="center"
+        android:paddingHorizontal="13dp"
+        android:paddingVertical="15dp"
+        android:layout_weight="18">
+        <com.hit.android1.finalproject.ui.customviews.IconWithTextView
+            android:id="@+id/icon_button"
+            android:layout_width="wrap_content"
+            android:paddingTop="4dp"
+            android:layout_height="match_parent"
+            app:iconSrc="@drawable/ic_logo_text_only"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <com.hit.android1.finalproject.ui.customviews.IconWithTextView
+            android:id="@+id/elements_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:text="Elements"
+            app:iconSrc="@drawable/ic_material_btn"/>
+    </LinearLayout>
+
 
     <!--!Divider!-->
     <View

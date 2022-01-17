@@ -11,6 +11,9 @@ import com.hit.android1.finalproject.dao.relations.RecipeAndIngredients
 
 @Dao
 interface IDao {
+    companion object {
+        var map = mutableMapOf<String, Any>()
+    }
     /***********     Recipe      ************/
 
     @Transaction
@@ -33,10 +36,10 @@ interface IDao {
     @Query("SELECT id FROM inventoryItem")
     suspend fun getItemNames(): List<String>
 
-    @Query("SELECT * FROM inventoryItem")
+    @Query("SELECT * FROM inventoryItem ORDER BY id ASC")
     suspend fun getItems(): List<InventoryItem>
 
-    @Query("SELECT * FROM inventoryItem WHERE unlocked = 1")
+    @Query("SELECT * FROM inventoryItem WHERE unlocked = 1 ORDER BY id ASC")
     suspend fun getUnlockedItems(): List<InventoryItem>
 
     @Query("SELECT unlocked FROM inventoryItem WHERE id IN (:itemIds)")

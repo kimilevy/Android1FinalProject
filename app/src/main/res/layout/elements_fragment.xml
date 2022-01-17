@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/game_background"
+    android:orientation="vertical"
+    tools:context=".ui.elements.ElementsFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:paddingHorizontal="13dp"
+        android:paddingVertical="15dp"
+        android:layout_weight="18">
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <com.hit.android1.finalproject.ui.customviews.IconWithTextView
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:iconSrc="@drawable/ic_baseline_arrow_back_24"/>
+    </LinearLayout>
+
+
+    <!--!Divider!-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".5"
+        android:background="@color/gray_600"
+        android:baselineAligned="false" />
+    <!--!Divider!-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="141.5">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingHorizontal="16dp"
+            android:gravity="center_vertical"
+            android:layout_weight="11">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="@string/elements_title"
+                android:textColor="@color/white"
+                android:textSize="27sp"
+                android:fontFamily="@font/cardo"
+                android:layout_height="wrap_content"/>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/amount_achieved_text"
+                android:layout_width="wrap_content"
+                android:text="@string/amount_unlocked_elements"
+                android:textColor="@color/white"
+                android:textSize="27sp"
+                android:fontFamily="@font/cardo"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="88">
+            <!-- Trick For exact padding (empty view) -->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="10"/>
+            <!-- Trick For exact padding (empty view) -->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/item_inventory_recycler_view"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="78"
+                android:orientation="vertical"
+                android:scrollbars="vertical"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="4" />
+
+            <!-- Trick For exact padding (empty view) -->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="10"/>
+            <!-- Trick For exact padding (empty view) -->
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
