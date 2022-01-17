@@ -65,7 +65,6 @@ class AlchemyPlaygroundView @JvmOverloads constructor(
                     dragEvent.clipDescription?.let {
                         if (it.hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)) {
                             val dropDataJson = dragEvent.clipData.getItemAt(0).text.toString()
-                            logDebug(dropDataJson)
                             GlobalScope.launch {
                                 val dropData = Json.decodeFromString<DropItemEventData>(dropDataJson)
 
@@ -205,10 +204,11 @@ class AlchemyPlaygroundView @JvmOverloads constructor(
                         shouldMergeIfIntersecting = false,
                         useOffset = false
                     )
-                    resultItem.scaleX = 0f
-                    resultItem.scaleY = 0f
 
                     withContext(Dispatchers.Main) {
+                        resultItem.scaleX = 0f
+                        resultItem.scaleY = 0f
+
                         // Animate result item
                         resultItemAnimation(resultItem)
                     }

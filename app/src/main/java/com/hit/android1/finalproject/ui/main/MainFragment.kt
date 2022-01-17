@@ -9,17 +9,17 @@ import com.hit.android1.finalproject.app.Extensions.openSnackbar
 import com.hit.android1.finalproject.app.Globals.dao
 import com.hit.android1.finalproject.databinding.MainFragmentBinding
 import com.hit.android1.finalproject.ui.adapters.InventoryAdapter
+import com.hit.android1.finalproject.ui.sharedmodels.SharedModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class MainFragment : AppFragmentWithModel<MainFragmentBinding, MainViewModel>(MainViewModel::class.java) {
+class MainFragment : AppFragmentWithModel<MainFragmentBinding, SharedModel>(SharedModel::class.java) {
     override fun inflate() = MainFragmentBinding.inflate(layoutInflater)
     lateinit var recyclerAdapter: InventoryAdapter
 
     override fun runOnCreateView(view: View) {
-        viewModel.cool = "UNCOOL ANYMORE 🎨"
         recyclerAdapter = InventoryAdapter()
         initializeViewModel()
         initializeAlchemyPlaygroundObservable()
@@ -35,7 +35,7 @@ class MainFragment : AppFragmentWithModel<MainFragmentBinding, MainViewModel>(Ma
         binding.alchemyPlayground.setOnItemMerge {
             openSnackbar(it)
             GlobalScope.launch(Dispatchers.IO) {
-                dao.unlockItem(it.id)
+                viewModel.unlockItem(it)
                 withContext(Dispatchers.Main) {
                     recyclerAdapter.unlockItem(it)
                 }
@@ -46,13 +46,18 @@ class MainFragment : AppFragmentWithModel<MainFragmentBinding, MainViewModel>(Ma
     private fun initializeRecycler() {
         binding.itemInventoryRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2, RecyclerView.HORIZONTAL, false)
         binding.itemInventoryRecyclerView.adapter = recyclerAdapter
+        viewModel.addUnlockedListener {
+            withContext(Dispatchers.Main) {
+                recyclerAdapter.unlockItem(it)
+            }
+        }
     }
 
     private fun initializeViewModel() {
         initializeRecycler()
         GlobalScope.launch(Dispatchers.IO) {
             viewModel.items = dao.getItems()
-            viewModel.unlockedItems = dao.getUnlockedItems()
+            viewModel.unlockedItems = dao.getUnlockedItems().toMutableList()
             withContext(Dispatchers.Main) {
                 recyclerAdapter.inventory = viewModel.unlockedItems!!.toMutableList()
             }

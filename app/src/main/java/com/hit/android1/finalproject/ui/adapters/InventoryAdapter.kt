@@ -14,12 +14,16 @@ class InventoryAdapter : RecyclerView.Adapter<InventoryAdapter.InventoryViewHold
             notifyItemRangeInserted(0, value.size)
         }
 
-    fun unlockItem(item: InventoryItem) {
+    fun unlockItem(item: InventoryItem, inserted: Boolean = true) {
         if (inventory.contains(item)) return
         inventory.add(item)
         inventory.sortBy { it.id }
 
-        notifyItemInserted(inventory.indexOf(item))
+        if (inserted) {
+            notifyItemInserted(inventory.indexOf(item))
+        } else {
+            notifyItemChanged(inventory.indexOf(item))
+        }
     }
 
 
