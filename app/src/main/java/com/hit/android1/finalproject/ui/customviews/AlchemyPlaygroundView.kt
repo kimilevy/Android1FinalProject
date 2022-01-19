@@ -29,7 +29,7 @@ class AlchemyPlaygroundView @JvmOverloads constructor(
     companion object {
         private const val MERGE_ANIMATION_DURATION = 300L
         private const val ITEM_WIDTH_X_OFFSET = .8f
-        private const val ITEM_WIDTH_Y_OFFSET = 1.6f
+        private const val ITEM_WIDTH_Y_OFFSET = 1.9f
         private const val MAX_GRAVITY_X_DIFF = 1.2 // in regards to width
         private const val MAX_GRAVITY_Y_DIFF = 1 // in regards to height
     }
@@ -133,7 +133,7 @@ class AlchemyPlaygroundView @JvmOverloads constructor(
                     }
 
                     movedItem = null
-                    view.performClick();
+                    performClick()
                     true
                 }
                 else -> false

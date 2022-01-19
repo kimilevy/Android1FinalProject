@@ -23,15 +23,18 @@
         android:layout_weight="23.5"/>
 
 
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatButton
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="12"
-        android:background="@null"
         android:id="@+id/play_button_game"
-        android:src="@drawable/play_game_button"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:text="@string/play_button_txt"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:background="@drawable/play_button_selector"
+        android:textColor="?colorOnPrimary"
+        android:paddingVertical="8dp"
+        android:minWidth="130dp"
         />
 
     <View

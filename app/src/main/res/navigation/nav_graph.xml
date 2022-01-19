@@ -13,9 +13,9 @@
             android:id="@+id/action_mainFragment_to_elementsFragment"
             app:destination="@id/ElementsFragment"
             app:enterAnim="@anim/slide_in"
-            app:exitAnim="@anim/slide_out"
+            app:exitAnim="@anim/remain_under"
             app:popEnterAnim="@anim/slide_in_reversed"
-            app:popExitAnim="@anim/slide_out" />
+            app:popExitAnim="@anim/remain_under" />
     </fragment>
     <fragment
         android:id="@+id/ElementsFragment"
@@ -27,9 +27,9 @@
             app:popUpTo="@id/welcomeFragment"
             app:destination="@id/mainFragment"
             app:enterAnim="@anim/slide_in"
-            app:exitAnim="@anim/slide_out"
+            app:exitAnim="@anim/remain_under"
             app:popEnterAnim="@anim/slide_in_reversed"
-            app:popExitAnim="@anim/slide_out"/>
+            app:popExitAnim="@anim/remain_under"/>
     </fragment>
     <fragment
         android:id="@+id/welcomeFragment"
@@ -39,8 +39,8 @@
             android:id="@+id/action_welcomeFragment_to_mainFragment"
             app:destination="@id/mainFragment"
             app:enterAnim="@anim/slide_in"
-            app:exitAnim="@anim/slide_out"
+            app:exitAnim="@anim/remain_under"
             app:popEnterAnim="@anim/slide_in_reversed"
-            app:popExitAnim="@anim/slide_out"/>
+            app:popExitAnim="@anim/remain_under"/>
     </fragment>
 </navigation>

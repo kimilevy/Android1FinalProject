@@ -3,60 +3,102 @@ package com.hit.android1.finalproject.ui.customviews
 import android.animation.Keyframe
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.motion.widget.KeyFrames
+import android.view.Window
+import android.widget.RelativeLayout
 import androidx.fragment.app.DialogFragment
+import com.hit.android1.finalproject.R
+import com.hit.android1.finalproject.app.Extensions.logDebug
+import com.hit.android1.finalproject.app.Extensions.toPx
+import com.hit.android1.finalproject.app.Globals.dao
 import com.hit.android1.finalproject.dao.entities.InventoryItem.Companion.name
 import com.hit.android1.finalproject.dao.relations.RecipeAndIngredients
-import com.hit.android1.finalproject.databinding.CustomViewItemBinding
 import com.hit.android1.finalproject.databinding.PopupViewBinding
 import com.hit.android1.finalproject.models.ItemDialogData
-import kotlinx.serialization.decodeFromString
+import kotlinx.coroutines.*
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.decodeFromString
+import java.util.*
+import kotlin.concurrent.fixedRateTimer
 
 class ItemDialogFragment: DialogFragment() {
+    companion object {
+        const val TAG = "ItemDialogFragment"
+    }
+
+    private var animationTimer: Timer? = null
     protected var _binding: PopupViewBinding? = null
     protected val binding get() = _binding!!
-    var recipes: List<RecipeAndIngredients>? = null
+//
+//    override fun getTheme(): Int {
+//        return R.style.ItemDialogFragment
+//    }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding= PopupViewBinding.inflate(LayoutInflater.from(context), container, false)
+        _binding = PopupViewBinding.inflate(LayoutInflater.from(context), container, false)
+        requireDialog().window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         val bundle: Bundle? = arguments
         bundle?.let {
-            it.getString("JSON")?.let { json ->
+            it.getString("DATA")?.let { json ->
+                logDebug(json)
                 val data = Json.decodeFromString<ItemDialogData>(json)
-                binding.itemName.text=data.result.name()
-                recipes = data.recipes
-                binding.firstIngredient.item = recipes!![0].first_ingredient
-                binding.secondIngredient.item = recipes!![0].second_ingredient
-//                val recipesLength = recipes!!.size
-//                val keyframes = mutableListOf<Keyframe>()
-//                recipes!!.forEachIndexed { index, recipeAndIngredients ->
-//                    keyframes.add(Keyframe.ofObject(index.toFloat()/recipesLength, recipeAndIngredients.first_ingredient))
-//                }
-//                animateItem(keyframes, binding.firstIngredient, recipesLength)
+                data.let {
+                    // Here we (probably) have all the data the dialog needs to work
+                    binding.itemName.text = data.inventoryItemWithRecipes.item.name(requireContext())
+                    GlobalScope.launch(Dispatchers.IO) {
+                        val recipes = dao.getRecipesWithIngredients(data.inventoryItemWithRecipes.item.id)
+                        logDebug(recipes)
+                        if (recipes.isNotEmpty()) {
+                            val recipesLength = recipes.size
+                            startRecipeLoop(recipesLength, recipes)
+                        } else {
+                            binding.recipesLayout.visibility = View.GONE
+                            binding.baseMaterialText.visibility = View.VISIBLE
+                        }
+                    }
+                }
             }
         }
         return binding.root
     }
-//
-//    private fun animateItem(
-//        keyframes: MutableList<Keyframe>,
-//        ingredient: ItemView,
-//        recipesLength: Int
-//    ) {
-//        val pvh = PropertyValuesHolder.ofKeyframe("item", *keyframes.toTypedArray())
-//        val animation = ObjectAnimator.ofPropertyValuesHolder(ingredient, pvh)
-//        animation.duration = recipesLength * 1000L
-//        animation.repeatMode = ObjectAnimator.RESTART
-//        animation.repeatCount = ObjectAnimator.INFINITE
-//        animation.start()
-//    }
+
+    class AnimationLooper
+
+    private fun startRecipeLoop(
+        recipesLength: Int,
+        recipes: List<RecipeAndIngredients>
+    ) {
+        var i = 0
+        logDebug("Starting animation")
+        animationTimer = fixedRateTimer("items_animation", false, 0L, 1000) {
+            this@ItemDialogFragment.activity?.runOnUiThread {
+                binding.firstIngredient.item = recipes[i].first_ingredient
+                binding.secondIngredient.item = recipes[i].second_ingredient
+            }
+            i += 1
+            i %= recipesLength
+        }
+
+
+        logDebug("animationjob is running?" + animationTimer)
+    }
+
+    override fun onDestroy() {
+        animationTimer?.cancel()
+        super.onDestroy()
+    }
 }

@@ -31,7 +31,7 @@
             android:id="@+id/elements_button"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            app:text="Elements"
+            app:text="@string/elements_button_text"
             app:iconSrc="@drawable/ic_material_btn"/>
     </LinearLayout>
 

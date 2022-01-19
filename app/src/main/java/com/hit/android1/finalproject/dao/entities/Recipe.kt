@@ -3,7 +3,9 @@ package com.hit.android1.finalproject.dao.entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.serialization.Serializable
 
+@Serializable
 @Entity(tableName="recipe")
 data class Recipe(
     @PrimaryKey(autoGenerate = true)

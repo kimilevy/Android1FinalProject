@@ -13,12 +13,16 @@ import com.hit.android1.finalproject.app.Globals
 import com.hit.android1.finalproject.databinding.MainActivityBinding
 
 class MainActivity : AppCompatActivity() {
+    companion object {
+        var PACKAGE_NAME: String? = null
+    }
     private lateinit var binding: MainActivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         Globals.createDB(applicationContext)
+        PACKAGE_NAME = applicationContext.packageName;
 
         //Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);

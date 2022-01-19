@@ -3,6 +3,7 @@
     android:id="@+id/custom_view_item_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:layout_gravity="center"
     android:gravity="center"
     android:layout_width="78dp"
     android:layout_height="100dp">
@@ -22,6 +23,6 @@
         android:layout_height="28dp"
         android:gravity="center_horizontal"
         android:textColor="@color/white"
-        android:text="no text"
+        android:text="@string/item_view_default_text"
         android:textSize="13.5sp"/>
 </LinearLayout>

@@ -1,12 +1,17 @@
 package com.hit.android1.finalproject.app
 
 import android.app.Activity
+import android.content.Context
+import android.content.res.Resources
+import android.graphics.Rect
 import android.text.Editable
 import android.util.Log
 import android.view.Gravity
 import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import java.util.*
@@ -25,6 +30,8 @@ object Extensions {
     fun Fragment.logDebug(v: Any?) = Log.d("Debug", v.toString())
     fun Fragment.logException(e: Exception) = Log.e("Error", e.toString())
     fun Fragment.logException(e: String) = Log.e("Error", e)
+
+    fun View.isRtl() = resources.configuration.layoutDirection == View.LAYOUT_DIRECTION_RTL
 
     fun String.capitalize() = this.replaceFirstChar {
         if (it.isLowerCase()) it.titlecase(
@@ -69,6 +76,9 @@ object Extensions {
     fun Fragment.openSnackbar(text: Any) {
         Snackbar.make(requireView(), text.toString(), Snackbar.LENGTH_SHORT).show()
     }
+
+    fun Int.toPx(context: Context): Int = (this * context.resources.displayMetrics.density).toInt()
+
     fun Fragment.openTopSnackbar(text: String) {
         val snackbar = Snackbar.make(requireView(), text, Snackbar.LENGTH_SHORT)
         val layoutParams = snackbar.view.layoutParams as CoordinatorLayout.LayoutParams

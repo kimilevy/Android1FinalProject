@@ -61,7 +61,7 @@ class ItemView @JvmOverloads constructor(
     var item: InventoryItem? = null
     set(i: InventoryItem?) {
         i?.let {
-            title = i.name()
+            title = i.name(context)
             src = i.drawableResourceId(context)
             unlocked = i.unlocked
             field = i
@@ -71,10 +71,6 @@ class ItemView @JvmOverloads constructor(
 
     override fun initView(context: Context, attrs: AttributeSet?, defStyle: Int?) {
         setAttributes(attrs, context)
-    }
-
-    override fun performClick(): Boolean {
-        return super.performClick()
     }
 
     private fun setAttributes(attrs: AttributeSet?, context: Context) {
@@ -124,6 +120,10 @@ class ItemView @JvmOverloads constructor(
             }
             attachedToDrag = true
         }
+    }
+
+    override fun performClick(): Boolean {
+        return super.performClick()
     }
 
     private class DragShadow(var itemView: View) : DragShadowBuilder(itemView) {

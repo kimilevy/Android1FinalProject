@@ -18,7 +18,7 @@
         android:id="@+id/text_view"
         android:layout_width="match_parent"
         android:gravity="top|center_horizontal"
-        android:text="test"
+        android:text="@string/icon_with_text_default_val"
         android:textColor="@color/white"
         android:layout_height="0dp"
         android:textSize="11.1sp"
