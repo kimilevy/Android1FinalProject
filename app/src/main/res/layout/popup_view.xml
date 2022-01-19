@@ -1,6 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_marginVertical="25dp"
+    android:layout_marginHorizontal="20dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="30"
+        android:id="@+id/item_name"
+        android:textSize="30sp"
+        android:text="Item Name"
+        android:textColor="@color/black"
+        android:gravity="center"/>
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="10"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="70"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="39"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:text="How it's made:"
+            android:gravity="left|center"/>
+
+        <com.hit.android1.finalproject.ui.customviews.ItemView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="19"
+           android:id="@+id/first_ingredient"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="23"
+            android:src="@drawable/ic_baseline_add_24"
+            android:padding="16dp"/>
+
+
+
+        <com.hit.android1.finalproject.ui.customviews.ItemView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="19"
+            android:id="@+id/second_ingredient"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
