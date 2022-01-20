@@ -24,5 +24,5 @@
         android:gravity="center_horizontal"
         android:textColor="@color/white"
         android:text="@string/item_view_default_text"
-        android:textSize="13.5sp"/>
+        android:textSize="12sp"/>
 </LinearLayout>
