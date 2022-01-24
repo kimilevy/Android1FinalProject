@@ -238,7 +238,7 @@
     <string name="inventory_item_igloo">Igloo</string>
     <string name="inventory_item_island">Island</string>
     <string name="inventory_item_ivy">Ivy</string>
-    <string name="inventory_item_jack_o_lantern">Jack_O_Lantern</string>
+    <string name="inventory_item_jack_o_lantern">Jack O Lantern</string>
     <string name="inventory_item_jam">Jam</string>
     <string name="inventory_item_jar">Jar</string>
     <string name="inventory_item_jerky">Jerky</string>
@@ -538,4 +538,10 @@
     <string name="dialog_how_its_made_txt">How it\'s made:</string>
     <string name="this_is_a_base_material">This is a base material! What are you doing slacking around here? go make some new materials 😋</string>
     <string name="play_button_txt">PLAY</string>
+    <string name="search_hint_text">Search for an item</string>
+    <string name="onboarding_first_item_hint">Welcome to Alchemystic! To start long click and drag this item to the space above</string>
+    <string name="onboarding_second_item_hint">Drag this item on top the last item you dropped and see what happens!</string>
+    <string name="onboarding_elments_button">Here you can see all the elements you created so far and how they can be made</string>
+    <string name="onboarding_clear_button">To clear the table press here</string>
+    <string name="onboarding_thats_it">That\'s it! Have fun! 😁</string>
 </resources>

@@ -8,13 +8,14 @@ import android.view.DragEvent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.hit.android1.finalproject.app.CustomView
-import com.hit.android1.finalproject.app.Extensions.logDebug
 import com.hit.android1.finalproject.databinding.CustomViewAlchemyPlaygroundBinding
 import com.hit.android1.finalproject.models.DropItemEventData
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import android.view.MotionEvent
+import com.hit.android1.finalproject.R
 import com.hit.android1.finalproject.app.Globals.dao
+import com.hit.android1.finalproject.app.Globals.sfxPlayer
 import com.hit.android1.finalproject.dao.entities.InventoryItem
 import kotlinx.coroutines.*
 import kotlin.math.abs
@@ -39,6 +40,8 @@ class AlchemyPlaygroundView @JvmOverloads constructor(
     var movedItem: ItemView? = null
     var itemViewHeight: Int? = null
     var itemViewWidth: Int? = null
+    var onDropListeners = mutableListOf<(ItemView) -> Unit>()
+    var onceOnDropListeners = mutableListOf<(ItemView) -> Unit>()
     val xOffset get() = itemViewWidth?.let {-1 * it * ITEM_WIDTH_X_OFFSET}
     val yOffset get() = itemViewHeight?.let {-1 * it * ITEM_WIDTH_Y_OFFSET}
     override fun initView(context: Context, attrs: AttributeSet?, defStyle: Int?) {
@@ -49,6 +52,14 @@ class AlchemyPlaygroundView @JvmOverloads constructor(
 
     fun setOnItemMerge(callback: (item: InventoryItem) -> Unit) {
         onItemMerge = callback
+    }
+
+    fun addOnDropListener(callback: (item: ItemView) -> Unit) {
+        onDropListeners += callback
+    }
+
+    fun addOnceOnDropListener(callback: (item: ItemView) -> Unit) {
+        onceOnDropListeners += callback
     }
 
     fun clear() {
@@ -67,7 +78,7 @@ class AlchemyPlaygroundView @JvmOverloads constructor(
                             val dropDataJson = dragEvent.clipData.getItemAt(0).text.toString()
                             GlobalScope.launch {
                                 val dropData = Json.decodeFromString<DropItemEventData>(dropDataJson)
-
+                                sfxPlayer?.play(R.raw.pop_compressed)
                                 createNewItem(
                                     dropData.item,
                                     dragEvent.x,
@@ -108,9 +119,26 @@ class AlchemyPlaygroundView @JvmOverloads constructor(
             if (shouldMergeIfIntersecting) {
                 mergeIfIntersecting(newItem)
             }
+
+            runOnDropListeners(newItem)
+            runOnceOnDropListeners(newItem)
+
             invalidate()
         }
         return newItem
+    }
+
+    private fun runOnDropListeners(newItem: ItemView) {
+        onDropListeners.forEach {
+            it(newItem)
+        }
+    }
+
+    private fun runOnceOnDropListeners(newItem: ItemView) {
+        onceOnDropListeners.forEach {
+            it(newItem)
+        }
+        onceOnDropListeners.clear()
     }
 
     private fun setItemTouchListener(item: ItemView) {
@@ -174,6 +202,7 @@ class AlchemyPlaygroundView @JvmOverloads constructor(
             val resultId = dao.getResult(otherItemIntersectingWith.item!!.id, item.item!!.id)
             resultId?.let {
                 mergeItems(item, otherItemIntersectingWith, dao.getItem(resultId))
+                sfxPlayer?.play(R.raw.created_item)
             }
         }
     }

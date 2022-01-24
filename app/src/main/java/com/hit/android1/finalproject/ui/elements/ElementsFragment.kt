@@ -26,7 +26,7 @@ class ElementsFragment : AppFragmentWithModel<ElementsFragmentBinding, SharedMod
     lateinit var inventoryAdapter: InventoryAdapter
 
     override fun runOnCreateView(view: View) {
-        inventoryAdapter = InventoryAdapter(false) {
+        inventoryAdapter = InventoryAdapter(requireContext(), false) {
             it?.let { item ->
                 if (!item.unlocked) return@InventoryAdapter
                 GlobalScope.launch(Dispatchers.IO) {

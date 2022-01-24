@@ -4,9 +4,11 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.hit.android1.finalproject.R
 import com.hit.android1.finalproject.app.AppFragment
+import com.hit.android1.finalproject.app.AppFragmentWithModel
 import com.hit.android1.finalproject.databinding.WelcomeFragmentBinding
+import com.hit.android1.finalproject.ui.sharedmodels.SharedModel
 
-class WelcomeFragment : AppFragment<WelcomeFragmentBinding>() {
+class WelcomeFragment : AppFragmentWithModel<WelcomeFragmentBinding, SharedModel>(SharedModel::class.java) {
     override fun inflate() = WelcomeFragmentBinding.inflate(layoutInflater)
 
     override fun runOnCreateView(view: View) {

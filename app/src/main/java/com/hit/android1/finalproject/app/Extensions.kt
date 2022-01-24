@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Rect
+import android.icu.text.Normalizer2
 import android.text.Editable
 import android.util.Log
 import android.view.Gravity
@@ -14,7 +15,9 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
+import java.text.Normalizer
 import java.util.*
+import java.util.regex.Pattern
 
 
 object Extensions {
@@ -37,6 +40,11 @@ object Extensions {
         if (it.isLowerCase()) it.titlecase(
             Locale.getDefault()
         ) else it.toString()
+    }
+
+    fun String.stripHebrewVowels(): String {
+        return Normalizer.normalize(this, Normalizer.Form.NFKD)
+            .replace(Regex("[\u0591-\u05C7]"),"")
     }
 
     fun <K, V> MutableMap<K, V>.getOrCreate(key: K, create: () -> V): V {

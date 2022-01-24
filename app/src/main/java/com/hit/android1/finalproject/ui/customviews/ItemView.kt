@@ -34,6 +34,9 @@ class ItemView @JvmOverloads constructor(
     var attachedToDrag: Boolean = false
 
     override fun inflate() = CustomViewItemBinding.inflate(LayoutInflater.from(context), this, true)
+    val draggableLayout
+        get() = binding.customViewItemLayout
+
     var title: String = "Item Title"
     set(t: String) {
         binding.itemTitle.text = t

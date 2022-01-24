@@ -161,7 +161,7 @@
     <string name="inventory_item_family_tree">עץ משפחה</string>
     <string name="inventory_item_farm">חווה חקלאית</string>
     <string name="inventory_item_farmer">חַקלאַי</string>
-    <string name="inventory_item_faun">-</string>
+    <string name="inventory_item_faun">אדם תיש</string>
     <string name="inventory_item_fence">גָדֵר</string>
     <string name="inventory_item_field">שדה</string>
     <string name="inventory_item_fireplace">אָח</string>
@@ -228,7 +228,7 @@
     <string name="inventory_item_hourglass">שָׁעוֹן חוֹל</string>
     <string name="inventory_item_house">בַּיִת</string>
     <string name="inventory_item_human">בן אנוש</string>
-    <string name="inventory_item_hummingbird">HummingBird.</string>
+    <string name="inventory_item_hummingbird">יוֹנֵק דְּבַשׁ</string>
     <string name="inventory_item_hurricane">הוֹרִיקָן</string>
     <string name="inventory_item_husky">צָרוּד</string>
     <string name="inventory_item_ice">קרח</string>
@@ -238,7 +238,7 @@
     <string name="inventory_item_igloo">אִיגְלוּ</string>
     <string name="inventory_item_island">אִי</string>
     <string name="inventory_item_ivy">קִיסוֹס</string>
-    <string name="inventory_item_jack_o_lantern">Jack_o_Lantern.</string>
+    <string name="inventory_item_jack_o_lantern">עששית דלעת</string>
     <string name="inventory_item_jam">ריבה</string>
     <string name="inventory_item_jar">קַנקַן</string>
     <string name="inventory_item_jerky">מִתנַדנֵד</string>
@@ -304,9 +304,9 @@
     <string name="inventory_item_mummy">אִמָא</string>
     <string name="inventory_item_music">מוּסִיקָה</string>
     <string name="inventory_item_musician">מוּסִיקָאִי</string>
-    <string name="inventory_item_narwhal">narwhal</string>
+    <string name="inventory_item_narwhal">חדשן חדקרן</string>
     <string name="inventory_item_needle">מַחַט</string>
-    <string name="inventory_item_nessie">nessie</string>
+    <string name="inventory_item_nessie">נסי</string>
     <string name="inventory_item_nest">קֵן</string>
     <string name="inventory_item_net">נֶטוֹ</string>
     <string name="inventory_item_night">לַיְלָה</string>
@@ -442,7 +442,7 @@
     <string name="inventory_item_soil">קרקע</string>
     <string name="inventory_item_solar_system">מערכת השמש</string>
     <string name="inventory_item_solid">מוצק</string>
-    <string name="inventory_item_sound">נשמע</string>
+    <string name="inventory_item_sound">שמע</string>
     <string name="inventory_item_space">מֶרחָב</string>
     <string name="inventory_item_spaceship">חללית</string>
     <string name="inventory_item_sphinx">ספִינקס</string>
@@ -464,7 +464,7 @@
     <string name="inventory_item_sun">שמש</string>
     <string name="inventory_item_sundial">שָׁעוֹן שֶׁמֶשׁ</string>
     <string name="inventory_item_sunflower">חַמָנִית</string>
-    <string name="inventory_item_supernova">supernova</string>
+    <string name="inventory_item_supernova">סוּפֶּרְנוֹבָה</string>
     <string name="inventory_item_sushi">סושי</string>
     <string name="inventory_item_swamp">לְהַצִיף</string>
     <string name="inventory_item_sweater">סווֶדֶר</string>
@@ -530,7 +530,6 @@
     <string name="inventory_item_zombie">זומבי</string>
     <string name="clear_btn_text">נקה</string>
     <string name="elements_title">אלמנטים</string>
-    <string name="amount_unlocked_elements"></string>
     <string name="elements_button_text">אלמנטים</string>
     <string name="item_name">שם הפריט</string>
     <string name="icon_with_text_default_val">מבחן</string>
@@ -538,4 +537,10 @@
     <string name="dialog_how_its_made_txt">איך זה נוצר</string>
     <string name="this_is_a_base_material">זהו מרכיב בסיסי!</string>
     <string name="play_button_txt">שחק</string>
+    <string name="search_hint_text">חפש</string>
+    <string name="onboarding_first_item_hint">ברוכים הבאים לAlchemystic! כדי להתחיל לחץ לחיצה ארוכה וגרור את האייטם לתוך שולחן העבודה</string>
+    <string name="onboarding_second_item_hint">גרור את החומר הבא על יד החומר הקודם והתבונן טוב!</string>
+    <string name="onboarding_elments_button">כאן ניתן לצפות בכל האלמנטים אשר יצרת עד עתה ולראות את מרכיבם</string>
+    <string name="onboarding_clear_button">כדי לנקות את שולחן העבודה לחץ כאן</string>
+    <string name="onboarding_thats_it">זה הכל! נסה להשיג את כולם 😁</string>
 </resources>
