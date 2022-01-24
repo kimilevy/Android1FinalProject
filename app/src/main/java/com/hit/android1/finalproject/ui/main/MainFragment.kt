@@ -6,9 +6,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.getkeepsafe.taptargetview.TapTarget
+import com.getkeepsafe.taptargetview.TapTargetSequence
 import com.getkeepsafe.taptargetview.TapTargetView
 import com.hit.android1.finalproject.R
 import com.hit.android1.finalproject.app.AppFragmentWithModel
+import com.hit.android1.finalproject.app.Extensions.logDebug
 import com.hit.android1.finalproject.app.Extensions.openSnackbar
 import com.hit.android1.finalproject.app.Globals.dao
 import com.hit.android1.finalproject.app.Globals.sfxPlayer
@@ -164,55 +166,42 @@ class MainFragment : AppFragmentWithModel<MainFragmentBinding, SharedModel>(Shar
     }
 
     private fun onboardingStep3() {
-        TapTargetView.showFor(
-            requireActivity(),
-            TapTarget
-                .forView(binding.elementsButton, getString(R.string.onboarding_elments_button))
-                .transparentTarget(true)
-                .cancelable(false),
-            object : TapTargetView.Listener() {
-                override fun onTargetClick(view: TapTargetView?) {
-                    super.onTargetClick(view)
-                    onboardingStep4()
+        TapTargetSequence(requireActivity())
+            .targets(
+                TapTarget
+                    .forView(binding.elementsButton, getString(R.string.onboarding_elments_button))
+                    .transparentTarget(true)
+                    .id(0)
+                    .cancelable(false),
+                TapTarget
+                    .forView(binding.clearButton, getString(R.string.onboarding_clear_button))
+                    .transparentTarget(true)
+                    .id(1)
+                    .cancelable(false),
+                TapTarget
+                    .forView(binding.onboardingOkButton, getString(R.string.onboarding_thats_it))
+                    .transparentTarget(true)
+                    .id(2)
+                    .cancelable(false)
+            )
+            .listener(object : TapTargetSequence.Listener {
+                override fun onSequenceStep(lastTarget: TapTarget?, targetClicked: Boolean) {
+                    if (lastTarget?.id() == 1) {
+                        binding.onboardingOkButton.visibility = View.VISIBLE
+                    }
                 }
-            }
-        )
-    }
 
-    private fun onboardingStep4() {
-        TapTargetView.showFor(
-            requireActivity(),
-            TapTarget
-                .forView(binding.clearButton, getString(R.string.onboarding_clear_button))
-                .transparentTarget(true)
-                .cancelable(false),
-            object : TapTargetView.Listener() {
-                override fun onTargetClick(view: TapTargetView?) {
-                    super.onTargetClick(view)
-                    onboardingStep5()
-                }
-            }
-        )
-    }
-
-    private fun onboardingStep5() {
-
-        TapTargetView.showFor(
-            requireActivity(),
-            TapTarget
-                .forView(binding.onboardingOkButton, getString(R.string.onboarding_thats_it))
-                .transparentTarget(true)
-                .cancelable(false),
-            object : TapTargetView.Listener() {
-                override fun onTargetClick(view: TapTargetView?) {
-                    super.onTargetClick(view)
+                override fun onSequenceFinish() {
                     binding.onboardingOkButton.visibility = View.GONE
                     onboardingFinished()
                 }
-            }
-        )
 
-        binding.onboardingOkButton.visibility = View.VISIBLE
+                override fun onSequenceCanceled(lastTarget: TapTarget?) {
+                    logDebug("Test")
+                }
+
+            })
+            .start()
     }
 
     private fun onboardingFinished() {
