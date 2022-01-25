@@ -2,8 +2,6 @@ package com.hit.android1.finalproject.ui.elements
 
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
-import android.widget.AdapterView
 import androidx.navigation.fragment.findNavController
 import com.hit.android1.finalproject.R
 import com.hit.android1.finalproject.app.AppFragmentWithModel
@@ -23,7 +21,7 @@ import kotlinx.serialization.json.Json
 
 class ElementsFragment : AppFragmentWithModel<ElementsFragmentBinding, SharedModel>(SharedModel::class.java) {
     override fun inflate() = ElementsFragmentBinding.inflate(layoutInflater)
-    lateinit var inventoryAdapter: InventoryAdapter
+    private lateinit var inventoryAdapter: InventoryAdapter
 
     override fun runOnCreateView(view: View) {
         inventoryAdapter = InventoryAdapter(requireContext(), false) {

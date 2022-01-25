@@ -31,25 +31,25 @@ class ItemView @JvmOverloads constructor(
         this.item = item
     }
     var isDragAndDrop: Boolean = true
-    var attachedToDrag: Boolean = false
+    private var attachedToDrag: Boolean = false
 
     override fun inflate() = CustomViewItemBinding.inflate(LayoutInflater.from(context), this, true)
     val draggableLayout
         get() = binding.customViewItemLayout
 
-    var title: String = "Item Title"
-    set(t: String) {
+    private var title: String = "Item Title"
+    set(t) {
         binding.itemTitle.text = t
         field = t
     }
 
-    var src: Int = 0
-    set(s: Int) {
+    private var src: Int = 0
+    set(s) {
         binding.itemImage.setImageResource(s)
         field = s
     }
 
-    var unlocked: Boolean = false
+    private var unlocked: Boolean = false
         set(unlocked) {
             if (unlocked) {
                 binding.lockImg.visibility = GONE
@@ -62,7 +62,7 @@ class ItemView @JvmOverloads constructor(
         }
 
     var item: InventoryItem? = null
-    set(i: InventoryItem?) {
+    set(i) {
         i?.let {
             title = i.name(context)
             src = i.drawableResourceId(context)
@@ -123,10 +123,6 @@ class ItemView @JvmOverloads constructor(
             }
             attachedToDrag = true
         }
-    }
-
-    override fun performClick(): Boolean {
-        return super.performClick()
     }
 
     private class DragShadow(var itemView: View) : DragShadowBuilder(itemView) {

@@ -6,9 +6,10 @@ import androidx.annotation.IdRes
 import androidx.annotation.RawRes
 import com.hit.android1.finalproject.R
 
-class SFXPlayer {
-    var sfx: MutableMap<Int, MediaPlayer>? = null
-    constructor(context: Context) {
+class SFXPlayer(context: Context) {
+    private var sfx: MutableMap<Int, MediaPlayer>? = null
+
+    init {
         sfx = mutableMapOf()
         sfx?.let {
             it[R.raw.created_item] = MediaPlayer.create(context, R.raw.created_item)

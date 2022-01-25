@@ -10,8 +10,10 @@ import com.hit.android1.finalproject.app.Extensions.stripHebrewVowels
 import com.hit.android1.finalproject.dao.entities.InventoryItem
 import com.hit.android1.finalproject.dao.entities.InventoryItem.Companion.name
 import com.hit.android1.finalproject.ui.customviews.ItemView
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
-class InventoryAdapter(val context: Context, val isDroppable: Boolean = true, var onItemClick: ((InventoryItem?) -> Unit)? = null) : RecyclerView.Adapter<InventoryAdapter.InventoryViewHolder>(), Filterable {
+class InventoryAdapter(val context: Context, private val isDroppable: Boolean = true, private var onItemClick: ((InventoryItem?) -> Unit)? = null) : RecyclerView.Adapter<InventoryAdapter.InventoryViewHolder>(), Filterable {
     inner class InventoryViewHolder(var view: ItemView) : RecyclerView.ViewHolder(view)
 
     var inventory: MutableList<InventoryItem> = mutableListOf()
@@ -57,6 +59,8 @@ class InventoryAdapter(val context: Context, val isDroppable: Boolean = true, va
         if (inventory.contains(item)) return
         inventory.add(item)
         inventory.sortBy { it.id }
+        fullList.add(item)
+        fullList.sortBy { it.name(context) }
 
         if (inserted) {
             notifyItemInserted(inventory.indexOf(item))

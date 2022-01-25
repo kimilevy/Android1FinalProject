@@ -543,4 +543,5 @@
     <string name="onboarding_elments_button">כאן ניתן לצפות בכל האלמנטים אשר יצרת עד עתה ולראות את מרכיבם</string>
     <string name="onboarding_clear_button">כדי לנקות את שולחן העבודה לחץ כאן</string>
     <string name="onboarding_thats_it">זה הכל! נסה להשיג את כולם 😁</string>
+    <string name="onboarding_ok_button_txt">סיימתי!</string>
 </resources>

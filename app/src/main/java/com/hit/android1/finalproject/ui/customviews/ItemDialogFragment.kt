@@ -1,31 +1,21 @@
 package com.hit.android1.finalproject.ui.customviews
 
-import android.animation.Keyframe
-import android.animation.ObjectAnimator
-import android.animation.PropertyValuesHolder
-import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
-import android.widget.RelativeLayout
 import androidx.fragment.app.DialogFragment
-import com.hit.android1.finalproject.R
 import com.hit.android1.finalproject.app.Extensions.logDebug
-import com.hit.android1.finalproject.app.Extensions.toPx
 import com.hit.android1.finalproject.app.Globals.dao
 import com.hit.android1.finalproject.dao.entities.InventoryItem.Companion.name
 import com.hit.android1.finalproject.dao.relations.RecipeAndIngredients
 import com.hit.android1.finalproject.databinding.PopupViewBinding
 import com.hit.android1.finalproject.models.ItemDialogData
 import kotlinx.coroutines.*
-import kotlinx.serialization.json.Json
 import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 import java.util.*
 import kotlin.concurrent.fixedRateTimer
 
@@ -35,8 +25,8 @@ class ItemDialogFragment: DialogFragment() {
     }
 
     private var animationTimer: Timer? = null
-    protected var _binding: PopupViewBinding? = null
-    protected val binding get() = _binding!!
+    private var _binding: PopupViewBinding? = null
+    private val binding get() = _binding!!
 //
 //    override fun getTheme(): Int {
 //        return R.style.ItemDialogFragment
@@ -76,8 +66,6 @@ class ItemDialogFragment: DialogFragment() {
         return binding.root
     }
 
-    class AnimationLooper
-
     private fun startRecipeLoop(
         recipesLength: Int,
         recipes: List<RecipeAndIngredients>
@@ -94,7 +82,7 @@ class ItemDialogFragment: DialogFragment() {
         }
 
 
-        logDebug("animationjob is running?" + animationTimer)
+        logDebug("animationjob is running? $animationTimer")
     }
 
     override fun onDestroy() {

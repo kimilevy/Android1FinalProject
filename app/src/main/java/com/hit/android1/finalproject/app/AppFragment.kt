@@ -9,7 +9,7 @@ import androidx.viewbinding.ViewBinding
 
 abstract class AppFragment<T: ViewBinding> : Fragment() {
     private lateinit var _view: View
-    protected var _binding: T? = null
+    private var _binding: T? = null
     protected val binding get() = _binding!!
 
     protected open fun innerRunOnCreate() {}

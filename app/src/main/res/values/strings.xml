@@ -544,4 +544,5 @@
     <string name="onboarding_elments_button">Here you can see all the elements you created so far and how they can be made</string>
     <string name="onboarding_clear_button">To clear the table press here</string>
     <string name="onboarding_thats_it">That\'s it! Have fun! 😁</string>
+    <string name="onboarding_ok_button_txt">Thanks!</string>
 </resources>

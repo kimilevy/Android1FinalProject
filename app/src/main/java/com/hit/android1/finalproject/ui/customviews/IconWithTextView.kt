@@ -21,7 +21,7 @@ class IconWithTextView @JvmOverloads constructor(
 
     }
 
-    open fun setOnClickListener(callback: () -> Unit) = binding.imageButton.setOnClickListener { callback() }
+    fun setOnClickListener(callback: () -> Unit) = binding.imageButton.setOnClickListener { callback() }
 
     private fun setAttributes(attrs: AttributeSet?, context: Context) {
         attrs?.let {

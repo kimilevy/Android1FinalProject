@@ -17,13 +17,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
         Globals.createDB(applicationContext)
         Globals.createSFX(applicationContext)
-        PACKAGE_NAME = applicationContext.packageName;
+        PACKAGE_NAME = applicationContext.packageName
 
         //Remove title bar
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE)
 
         binding = MainActivityBinding.inflate(LayoutInflater.from(this))
 

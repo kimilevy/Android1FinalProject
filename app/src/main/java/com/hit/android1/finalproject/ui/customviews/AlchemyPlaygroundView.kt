@@ -36,14 +36,14 @@ class AlchemyPlaygroundView @JvmOverloads constructor(
     }
 
     override fun inflate() = CustomViewAlchemyPlaygroundBinding.inflate(LayoutInflater.from(context), this, true)
-    var items = mutableListOf<ItemView>()
-    var movedItem: ItemView? = null
-    var itemViewHeight: Int? = null
-    var itemViewWidth: Int? = null
-    var onDropListeners = mutableListOf<(ItemView) -> Unit>()
-    var onceOnDropListeners = mutableListOf<(ItemView) -> Unit>()
-    val xOffset get() = itemViewWidth?.let {-1 * it * ITEM_WIDTH_X_OFFSET}
-    val yOffset get() = itemViewHeight?.let {-1 * it * ITEM_WIDTH_Y_OFFSET}
+    private var items = mutableListOf<ItemView>()
+    private var movedItem: ItemView? = null
+    private var itemViewHeight: Int? = null
+    private var itemViewWidth: Int? = null
+    private var onDropListeners = mutableListOf<(ItemView) -> Unit>()
+    private var onceOnDropListeners = mutableListOf<(ItemView) -> Unit>()
+    private val xOffset get() = itemViewWidth?.let {-1 * it * ITEM_WIDTH_X_OFFSET}
+    private val yOffset get() = itemViewHeight?.let {-1 * it * ITEM_WIDTH_Y_OFFSET}
     override fun initView(context: Context, attrs: AttributeSet?, defStyle: Int?) {
         registerDropListener()
     }
@@ -69,7 +69,7 @@ class AlchemyPlaygroundView @JvmOverloads constructor(
     }
 
     private fun registerDropListener() {
-        binding.root.setOnDragListener { view, dragEvent ->
+        binding.root.setOnDragListener { _, dragEvent ->
             when (dragEvent.action) {
                 DragEvent.ACTION_DRAG_STARTED -> true
                 DragEvent.ACTION_DROP -> {
@@ -142,7 +142,7 @@ class AlchemyPlaygroundView @JvmOverloads constructor(
     }
 
     private fun setItemTouchListener(item: ItemView) {
-        item.setOnTouchListener { view, event ->
+        item.setOnTouchListener { _, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
                     movedItem = item
@@ -217,7 +217,7 @@ class AlchemyPlaygroundView @JvmOverloads constructor(
         withContext(Dispatchers.Main) {
 
             // Animate both items and wait for them to finish
-            mergeItemsAnimation(itemA, itemB) { midX, midY, animator ->
+            mergeItemsAnimation(itemA, itemB) { midX, midY, _ ->
                 // Remove both items
                 binding.root.removeView(itemA)
                 binding.root.removeView(itemB)
@@ -257,7 +257,7 @@ class AlchemyPlaygroundView @JvmOverloads constructor(
             ObjectAnimator.ofFloat(itemB, "translationY", middleY)
         )
         animations.forEach {
-            it.duration = Companion.MERGE_ANIMATION_DURATION
+            it.duration = MERGE_ANIMATION_DURATION
         }
         val makeAXSmall = ObjectAnimator.ofFloat(itemA, "scaleX", 0f)
         val makeAYSmall = ObjectAnimator.ofFloat(itemA, "scaleY", 0f)

@@ -12,7 +12,7 @@ abstract class CustomView<T: ViewBinding>  @JvmOverloads constructor(
     defStyle: Int = 0
 ) : FrameLayout(context!!, attrs, defStyle) {
     private lateinit var _view: View
-    protected val _binding: T? by lazy { inflate() }
+    private val _binding: T? by lazy { inflate() }
     protected val binding get() = _binding!!
 
     // Abstract Functions
