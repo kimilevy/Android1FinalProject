@@ -1,5 +1,7 @@
 package com.hit.android1.finalproject.ui.customviews
 
+import android.animation.Animator
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.util.AttributeSet
 import com.hit.android1.finalproject.R
@@ -13,6 +15,9 @@ import android.graphics.Point
 import android.os.Build
 
 import android.view.View
+import com.hit.android1.finalproject.app.Globals
+import com.hit.android1.finalproject.app.Globals.sfxPlayer
+import com.hit.android1.finalproject.app.SFXPlayer
 import com.hit.android1.finalproject.dao.entities.InventoryItem
 import com.hit.android1.finalproject.dao.entities.InventoryItem.Companion.drawableResourceId
 import com.hit.android1.finalproject.dao.entities.InventoryItem.Companion.name
@@ -109,6 +114,7 @@ class ItemView @JvmOverloads constructor(
 
                     val itemShadow = DragShadow(view)
 
+                    sfxPlayer?.play(R.raw.lift_sound_pitch_enhanced)
                     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
                         //support pre-Nougat versions
                         @Suppress("DEPRECATION")
@@ -126,14 +132,19 @@ class ItemView @JvmOverloads constructor(
     }
 
     private class DragShadow(var itemView: View) : DragShadowBuilder(itemView) {
+        companion object {
+            const val DRAG_SHADOW_SCALE = 1.5f
+        }
+
         override fun onDrawShadow(canvas: Canvas?) {
+            canvas?.scale(DRAG_SHADOW_SCALE, DRAG_SHADOW_SCALE)
             itemView.draw(canvas)
         }
 
         override fun onProvideShadowMetrics(shadowSize: Point, shadowTouchPoint: Point) {
-            val v = view
-            val height = v.height
-            val width = v.width
+            var v = view
+            val height = (v.height*DRAG_SHADOW_SCALE).toInt()
+            val width = (v.width*DRAG_SHADOW_SCALE).toInt()
             shadowSize.set(width, height)
             shadowTouchPoint.set(width / 2, height / 2)
         }

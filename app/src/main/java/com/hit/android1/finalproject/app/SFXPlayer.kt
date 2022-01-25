@@ -15,6 +15,7 @@ class SFXPlayer(context: Context) {
             it[R.raw.created_item] = MediaPlayer.create(context, R.raw.created_item)
             it[R.raw.pop_compressed] = MediaPlayer.create(context, R.raw.pop_compressed)
             it[R.raw.clean] = MediaPlayer.create(context, R.raw.clean)
+            it[R.raw.lift_sound_pitch_enhanced] = MediaPlayer.create(context, R.raw.lift_sound_pitch_enhanced)
         }
     }
 
