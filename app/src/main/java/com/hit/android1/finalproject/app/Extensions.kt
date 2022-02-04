@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
+import com.hit.android1.finalproject.BuildConfig
 import com.hit.android1.finalproject.R
 import com.hit.android1.finalproject.app.Extensions.openSnackbar
 import java.text.Normalizer
@@ -11,13 +12,17 @@ import java.text.Normalizer
 
 object Extensions {
     fun Fragment.logDebug(v: Any?) {
-        val text = v.toString()
-        Log.d("Debug", text)
+        if (BuildConfig.DEBUG) {
+            val text = v.toString()
+            Log.d("Debug", text)
+        }
     }
     fun View.logDebug(v: Any?) {
-        val text = v.toString()
-        Log.d("Debug", text)
-        Snackbar.make(this, text, Snackbar.LENGTH_SHORT).show()
+        if (BuildConfig.DEBUG) {
+            val text = v.toString()
+            Log.d("Debug", text)
+            Snackbar.make(this, text, Snackbar.LENGTH_SHORT).show()
+        }
     }
 
     fun String.stripHebrewVowels(): String {

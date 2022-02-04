@@ -27,13 +27,15 @@ object OnBoardingHelper {
                 .transparentTarget(true)
                 .cancelable(false),
             object : TapTargetView.Listener() {
+                override fun onTargetClick(view: TapTargetView?) = Unit
                 override fun onTargetLongClick(view: TapTargetView?) {
-                    this.onTargetClick(view)
+                    super.onTargetClick(view)
                     firstItemDraggableLayout.performLongClick()
                     binding.alchemyPlayground.addOnceOnDropListener {
                         onboardingStep2(binding, activity)
                     }
                 }
+
             }
         )
     }
@@ -51,8 +53,9 @@ object OnBoardingHelper {
                 .transparentTarget(true)
                 .cancelable(false),
             object : TapTargetView.Listener() {
+                override fun onTargetClick(view: TapTargetView?) = Unit
                 override fun onTargetLongClick(view: TapTargetView?) {
-                    this.onTargetClick(view)
+                    super.onTargetClick(view)
                     secondItemDraggableLayout.performLongClick()
                     binding.alchemyPlayground.addOnceOnDropListener {
                         onboardingStep3(binding, activity)
