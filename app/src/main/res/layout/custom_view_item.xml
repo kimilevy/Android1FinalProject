@@ -11,6 +11,7 @@
         android:id="@+id/lock_img"
         android:src="@drawable/ic_baseline_lock_24"
         android:layout_height="50dp"
+        android:visibility="gone"
         android:layout_width="50dp"/>
     <ImageView
         android:id="@+id/item_image"

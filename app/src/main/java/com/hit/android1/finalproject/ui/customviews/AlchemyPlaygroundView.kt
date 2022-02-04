@@ -14,6 +14,7 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import android.view.MotionEvent
 import com.hit.android1.finalproject.R
+import com.hit.android1.finalproject.app.Extensions.logDebug
 import com.hit.android1.finalproject.app.Globals.dao
 import com.hit.android1.finalproject.app.Globals.sfxPlayer
 import com.hit.android1.finalproject.dao.entities.InventoryItem
@@ -73,19 +74,29 @@ class AlchemyPlaygroundView @JvmOverloads constructor(
             when (dragEvent.action) {
                 DragEvent.ACTION_DRAG_STARTED -> true
                 DragEvent.ACTION_DROP -> {
+                    val x = dragEvent.x
+                    val y = dragEvent.y
+                    logDebug("Dropped item")
                     dragEvent.clipDescription?.let {
+                        val clipData = dragEvent.clipData
+                        logDebug("Item has clip description")
                         if (it.hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)) {
-                            val dropDataJson = dragEvent.clipData.getItemAt(0).text.toString()
+                            val dropDataJson = clipData.getItemAt(0).text.toString()
+                            logDebug("Json was $dropDataJson")
                             GlobalScope.launch {
                                 val dropData = Json.decodeFromString<DropItemEventData>(dropDataJson)
+                                logDebug("Parsed data is $dropData")
                                 sfxPlayer?.play(R.raw.pop_compressed)
                                 createNewItem(
                                     dropData.item,
-                                    dragEvent.x,
-                                    dragEvent.y,
+                                    x,
+                                    y,
                                     shouldMergeIfIntersecting = true,
-                                    useOffset = true
+                                    useXOffset = true,
+                                    useYOffset = false,
+                                    isDrop = true
                                 )
+
                             }
                         }
                     }
@@ -101,7 +112,9 @@ class AlchemyPlaygroundView @JvmOverloads constructor(
         creationX: Float,
         creationY: Float,
         shouldMergeIfIntersecting: Boolean,
-        useOffset: Boolean
+        useXOffset: Boolean,
+        useYOffset: Boolean,
+        isDrop: Boolean
     ): ItemView {
         val newItem = ItemView(context, itemToCreate, false)
         setItemTouchListener(newItem)
@@ -113,17 +126,16 @@ class AlchemyPlaygroundView @JvmOverloads constructor(
             )
             itemViewHeight = itemViewHeight ?: newItem.measuredHeight
             itemViewWidth = itemViewWidth ?: newItem.measuredWidth
-            newItem.x = creationX + (if(useOffset) xOffset!! else 0f)
-            newItem.y = creationY + (if(useOffset) yOffset!! else 0f)
+            logDebug("useOffset, $useXOffset, creation: ($creationX, $creationY), offset: ($xOffset, $yOffset)")
+            newItem.x = creationX + (if(useXOffset) xOffset!! else 0f)
+            newItem.y = creationY + (if(useYOffset) yOffset!! else 0f)
             binding.root.addView(newItem)
             if (shouldMergeIfIntersecting) {
-                mergeIfIntersecting(newItem)
+                mergeIfIntersecting(newItem, isDrop)
             }
 
             runOnDropListeners(newItem)
             runOnceOnDropListeners(newItem)
-
-            invalidate()
         }
         return newItem
     }
@@ -157,7 +169,7 @@ class AlchemyPlaygroundView @JvmOverloads constructor(
                 }
                 MotionEvent.ACTION_UP -> {
                     movedItem?.let {
-                        mergeIfIntersecting(it)
+                        mergeIfIntersecting(it, false)
                     }
 
                     movedItem = null
@@ -170,7 +182,7 @@ class AlchemyPlaygroundView @JvmOverloads constructor(
     }
 
     @DelicateCoroutinesApi
-    private fun mergeIfIntersecting(item: ItemView) {
+    private fun mergeIfIntersecting(item: ItemView, isDrop: Boolean) {
         /*
             check if matching with intersected item views
             get the result of them
@@ -183,6 +195,7 @@ class AlchemyPlaygroundView @JvmOverloads constructor(
                 use listener from parent to tell them the item is unlocked
          */
         GlobalScope.launch(Dispatchers.IO) {
+            logDebug("Checking if intersection")
             val intersecting = items.filter { curr ->
                 val xDiff = abs(item.x - curr.x)
                 val yDiff = abs(item.y - curr.y)
@@ -191,23 +204,30 @@ class AlchemyPlaygroundView @JvmOverloads constructor(
                         yDiff < (itemViewHeight!! * MAX_GRAVITY_Y_DIFF)
             }
 
-            if (intersecting.isEmpty()) return@launch
+            if (intersecting.isEmpty()) {
+                logDebug("No intersection, finishing check")
+                return@launch
+            }
             val recipes = dao.getRecipesThatCanBeMade(item.item!!.id)
             val viableIntersections = intersecting.filter { curr ->
                 recipes.any{it.second_ingredient == curr.item?.id || it.first_ingredient == curr.item?.id}
             }
 
-            if (viableIntersections.isEmpty()) return@launch
+            if (viableIntersections.isEmpty()) {
+                logDebug("No viable recipes, returning.")
+                return@launch
+            }
             val otherItemIntersectingWith = viableIntersections[0]
             val resultId = dao.getResult(otherItemIntersectingWith.item!!.id, item.item!!.id)
             resultId?.let {
-                mergeItems(item, otherItemIntersectingWith, dao.getItem(resultId))
+                mergeItems(item, otherItemIntersectingWith, dao.getItem(resultId), isDrop)
                 sfxPlayer?.play(R.raw.created_item)
             }
         }
     }
 
-    private suspend fun mergeItems(itemA: ItemView, itemB: ItemView, result: InventoryItem) {
+    private suspend fun mergeItems(itemA: ItemView, itemB: ItemView, result: InventoryItem, isDrop: Boolean) {
+        logDebug("Merging items")
         // Tell parent view that we merged something
         onItemMerge(result)
 
@@ -231,7 +251,9 @@ class AlchemyPlaygroundView @JvmOverloads constructor(
                         midX,
                         midY,
                         shouldMergeIfIntersecting = false,
-                        useOffset = false
+                        useXOffset = false,
+                        useYOffset = false,
+                        isDrop = false
                     )
 
                     withContext(Dispatchers.Main) {
